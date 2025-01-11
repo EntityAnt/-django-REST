@@ -82,11 +82,12 @@ SIMPLE_JWT = {
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.getenv("NAME"),
+        "NAME": os.getenv("POSTGRES_NAME"),
         "USER": os.getenv("POSTGRES_USER"),
-        "PASSWORD": os.getenv("PASSWORD"),
-        "HOST": os.getenv("HOST"),
-        "PORT": os.getenv("PORT"),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+        "HOST": os.getenv("POSTGRES_HOST"),
+        "PORT": os.getenv("POSTGRES_PORT"),
+
     }
 }
 
@@ -107,8 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
-        'task': 'vehicle.tasks.check_filter',  # Путь к задаче
-        'schedule': timedelta(minutes=10),  # Расписание выполнения задачи (например, каждые 10 минут)
+        'task': 'vehicle.tasks.check_filter',
+        'schedule': timedelta(minutes=10),  
     },
 }
 
