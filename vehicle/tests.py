@@ -1,7 +1,4 @@
-from rest_framework import status
 from rest_framework.test import APITestCase
-
-from vehicle.models import Car
 
 
 class VehicleTestcase(APITestCase):

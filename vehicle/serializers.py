@@ -36,12 +36,12 @@ class MotoCreateSerializer(serializers.ModelSerializer):
         model = Moto
         fields = "__all__"
         validators = [
-            TitleValidator(field='title'),
-            serializers.UniqueTogetherValidator(fields=['title', 'description'], queryset=Moto.objects.all())
+            TitleValidator(field="title"),
+            serializers.UniqueTogetherValidator(fields=["title", "description"], queryset=Moto.objects.all()),
         ]
 
     def create(self, validated_data):
-        milage_data = validated_data.pop('milage')
+        milage_data = validated_data.pop("milage")
         moto = Moto.objects.create(**validated_data)
         for milage in milage_data:
             Milage.objects.create(moto=moto, **milage)
@@ -66,4 +66,4 @@ class MotoMilageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Milage
-        fields = ('milage', 'year', 'moto')
+        fields = ("milage", "year", "moto")

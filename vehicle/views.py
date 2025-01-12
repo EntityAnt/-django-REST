@@ -1,15 +1,13 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, viewsets
 from rest_framework.filters import OrderingFilter
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
-from vehicle.models import Car, Moto, Milage
+from vehicle.models import Car, Milage, Moto
 from vehicle.paginators import VehiclePaginator
 from vehicle.permissions import IsOwnerOrStaff
-from vehicle.serializers import CarSerializer, MilageSerializer, MotoSerializer, MotoMilageSerializer, \
-    MotoCreateSerializer
-
-from rest_framework.permissions import IsAuthenticated, AllowAny
-
+from vehicle.serializers import (CarSerializer, MilageSerializer, MotoCreateSerializer, MotoMilageSerializer,
+                                 MotoSerializer)
 from vehicle.tasks import check_milage
 
 
@@ -54,7 +52,6 @@ class MotoDestroyAPIView(generics.DestroyAPIView):
 class MilageCreateAPIView(generics.CreateAPIView):
     serializer_class = MilageSerializer
 
-
     def perform_create(self, serializer):
         new_milage = serializer.save()
         if new_milage.car:
@@ -72,9 +69,8 @@ class MilageListAPIView(generics.ListAPIView):
     serializer_class = MilageSerializer
     queryset = Milage.objects.all()
     filter_backends = [DjangoFilterBackend, OrderingFilter]
-    filterset_fields = ['car', 'moto']
-    ordering_fields = ['year',]
+    filterset_fields = ["car", "moto"]
+    ordering_fields = [
+        "year",
+    ]
     pagination_class = VehiclePaginator
-
-
-

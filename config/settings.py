@@ -21,16 +21,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "users",
     "vehicle",
-
     "rest_framework",
     "django_filters",
     "rest_framework_simplejwt",
-    'drf_yasg',
-    'corsheaders',
-    'django_celery_beat',
+    "drf_yasg",
+    "corsheaders",
+    "django_celery_beat",
 ]
 
 MIDDLEWARE = [
@@ -41,8 +39,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-
-    'corsheaders.middleware.CorsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -66,17 +63,17 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
     ],
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=500),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=500),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
 
 DATABASES = {
@@ -92,7 +89,6 @@ DATABASES = {
         "PASSWORD": "1234",
         "HOST": "localhost",
         "PORT": "5432",
-
     }
 }
 
@@ -112,14 +108,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CELERY_BEAT_SCHEDULE = {
-    'task-name': {
-        'task': 'vehicle.tasks.check_filter',
-        'schedule': timedelta(minutes=10),  
+    "task-name": {
+        "task": "vehicle.tasks.check_filter",
+        "schedule": timedelta(minutes=10),
     },
 }
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8000',
+    "http://localhost:8000",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -142,5 +138,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.User"
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
+CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+CELERY_RESULT_BACKEND = "redis://127.0.0.1:6379/0"

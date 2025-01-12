@@ -8,6 +8,8 @@ RUN pip install -r /requirements.txt --no-cache-dir
 
 COPY . .
 
+RUN python manage.py collectstatic --noinput
+
 RUN pip install gunicorn
 
 CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]

@@ -17,15 +17,15 @@ def check_milage(pk, model):
             if prev_milage is None:
                 prev_milage = m.milage
             elif prev_milage < m.milage:
-                print('Неверный пробег')
+                print("Неверный пробег")
                 break
             prev_milage = m.milage
     else:
-        print(f'Экземпляр с pk={pk} не найден для модели {model}.')
+        print(f"Экземпляр с pk={pk} не найден для модели {model}.")
 
 
 def check_filter():
 
-    filter_amount = {'amount__lte': 500}
+    filter_amount = {"amount__lte": 500}
     if Car.objects.filter(**filter_amount).exists():
-        print('Отчет по фильтру')
+        print("Отчет по фильтру")
