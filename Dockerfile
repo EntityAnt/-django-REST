@@ -17,7 +17,7 @@ RUN pip install gunicorn
 COPY . .
 
 # Создаем права на директорию для статических файлов
-RUN mkdir -p /app/staticfiles && chmod -R /app/staticfiles
+RUN mkdir -p /app/staticfiles && chmod -R 755 /app/staticfiles
 
 EXPOSE 8000
 
