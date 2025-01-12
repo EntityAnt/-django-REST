@@ -77,4 +77,7 @@ jobs:
           docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/vehicle:${{ github.sha }}
           docker stop vehicle || true
           docker rm vehicle || true
-          docker run -d --name vehicle -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/vehicle:${{ github.sha }} << 'EOF'
+          docker run -d --name vehicle -p 80:8000 ${{ secrets.DOCKER_HUB_USERNAME }}/vehicle:${{ github.sha }} 
+          EOF
+
+      
