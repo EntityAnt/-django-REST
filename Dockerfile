@@ -2,17 +2,26 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+# Установка системных зависимостей
+
+RUN apt-get update \
+    && apt-get install -y ggc libpq-edv \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY ./requirements.txt /
 
 RUN pip install -r /requirements.txt --no-cache-dir
+RUN pip install gunicorn
 
 COPY . .
 
-RUN python manage.py collectstatic --noinput
+# Создаем права на директорию для статических файлов
+RUN mkdir -p /app/staticfiles && chmod -R /app/staticfiles
 
-RUN pip install gunicorn
+EXPOSE 8000
 
-CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py collectstatic --nopoint && gunicorn config.wsgi:application --bind 0.0.0.0:8000"]
 
 
 
